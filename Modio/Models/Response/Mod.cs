@@ -475,4 +475,14 @@ public enum ModEventType
     /// A user has joined or left the mod team.
     /// </summary>
     MOD_TEAM_CHANGED,
+
+    /// <summary>
+    /// A new comment was left on the mod.
+    /// </summary>
+    MOD_COMMENT_ADDED,
+
+    /// <summary>
+    /// A comment was deleted from a mod.
+    /// </summary>
+    MOD_COMMENT_DELETED,
 }
