@@ -39,6 +39,11 @@ public static class ModFilter
     public static readonly NumericField<uint> SubmitterId = new("submitted_by");
 
     /// <summary>
+    /// Filter by display name of the submitter.
+    /// </summary>
+    public static readonly TextField SubmittedByDisplayName = new("submitted_by_display_name");
+
+    /// <summary>
     /// Filter for date_added.
     /// </summary>
     public static readonly NumericField<uint> DateAdded = new("date_added");
