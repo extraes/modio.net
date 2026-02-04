@@ -109,6 +109,15 @@ public static class ModFilter
     public static readonly TextField Tags = new("tags");
 
     /// <summary>
+    /// By default, multiple filters are combined using an "AND" operation.
+    /// However, with `or_fields`, you can group filters together to be combined using an "OR" operation.
+    ///
+    /// - A maximum of 2 `or_fields` can be present in a query at any time.
+    /// - A maximum of 3 fields per `or_fields`.
+    /// </summary>
+    public static readonly OrFieldsField OrFields = new();
+
+    /// <summary>
     /// Sort results by most downloads.
     /// </summary>
     public static readonly SortField Downloads = new("downloads");
