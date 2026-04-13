@@ -39,6 +39,11 @@ public static class ModFilter
     public static readonly NumericField<uint> SubmitterId = new("submitted_by");
 
     /// <summary>
+    /// Filter by display name of the submitter.
+    /// </summary>
+    public static readonly TextField SubmittedByDisplayName = new("submitted_by_display_name");
+
+    /// <summary>
     /// Filter for date_added.
     /// </summary>
     public static readonly NumericField<uint> DateAdded = new("date_added");
@@ -102,6 +107,15 @@ public static class ModFilter
     /// Filter for tags.
     /// </summary>
     public static readonly TextField Tags = new("tags");
+
+    /// <summary>
+    /// By default, multiple filters are combined using an "AND" operation.
+    /// However, with `or_fields`, you can group filters together to be combined using an "OR" operation.
+    ///
+    /// - A maximum of 2 `or_fields` can be present in a query at any time.
+    /// - A maximum of 3 fields per `or_fields`.
+    /// </summary>
+    public static readonly OrFieldsField OrFields = new();
 
     /// <summary>
     /// Sort results by most downloads.

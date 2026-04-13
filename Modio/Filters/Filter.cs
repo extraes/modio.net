@@ -286,6 +286,39 @@ public sealed class FullTextField : FilterField
 }
 
 /// <summary>
+/// Specialized field for the `or_fields[]` filter.
+///
+/// By default, multiple filters are combined using an "AND" operation.
+/// However, with `or_fields`, you can group filters together to be combined using an "OR" operation.
+///
+/// - A maximum of 2 `or_fields` can be present in a query at any time.
+/// - A maximum of 3 fields per `or_fields`.
+/// </summary>
+public sealed class OrFieldsField
+{
+    readonly string Field = "or_fields[]";
+
+    internal Filter Fields(params string[] fields)
+    {
+        var name = Operator.Equal.ToName(Field);
+        var value = string.Join(",", fields);
+        return new Filter(name, value);
+    }
+
+    /// Combine two filters using an OR operation.
+    public Filter Eq(string field1, string field2)
+    {
+        return Fields(field1, field2);
+    }
+
+    /// Combine three filters using an OR operation.
+    public Filter Eq(string field1, string field2, string field3)
+    {
+        return Fields(field1, field2, field3);
+    }
+}
+
+/// <summary>
 /// Specialized field for text filters.
 /// </summary>
 public sealed class TextField : FilterField
