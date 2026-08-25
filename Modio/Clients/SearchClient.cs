@@ -79,7 +79,7 @@ public class SearchClient<T> : ApiClient where T : class
     public async IAsyncEnumerable<IReadOnlyList<T>> ToPagedEnumerable()
     {
         var (method, path) = this.route;
-        // Avoid integer underflow when 
+        // Huge integer type that does signed arithmetic and encompasses uint's max value
         long? remaining = null;
         do
         {
@@ -93,7 +93,6 @@ public class SearchClient<T> : ApiClient where T : class
 
             remaining ??= result.Total;
             remaining -= result.Count;
-            
 
             var limit = result.Limit;
             var offset = result.Offset;
