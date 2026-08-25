@@ -79,7 +79,8 @@ public class SearchClient<T> : ApiClient where T : class
     public async IAsyncEnumerable<IReadOnlyList<T>> ToPagedEnumerable()
     {
         var (method, path) = this.route;
-        uint? remaining = null;
+        // Avoid integer underflow when 
+        long? remaining = null;
         do
         {
             var req = new Request(method, path);
@@ -92,6 +93,7 @@ public class SearchClient<T> : ApiClient where T : class
 
             remaining ??= result.Total;
             remaining -= result.Count;
+            
 
             var limit = result.Limit;
             var offset = result.Offset;
